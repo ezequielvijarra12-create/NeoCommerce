@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoCommerce | Futuristic E-commerce</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Partículas de fondo -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Grid animado -->
+    <div class="grid-bg"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">◈</span>
+            <span class="logo-text">NEO<span class="accent">COMMERCE</span></span>
+        </div>
+        <nav class="nav">
+            <button class="nav-btn" data-view="home">INICIO</button>
+            <button class="nav-btn" data-view="productos">PRODUCTOS</button>
+            <button class="nav-btn" id="btnLogin">LOGIN</button>
+            <button class="nav-btn accent-btn" id="btnRegister">REGISTRO</button>
+        </nav>
+        <div class="user-info" id="userInfo" style="display:none;">
+            <span class="user-badge" id="userBadge"></span>
+            <button class="nav-btn logout-btn" id="btnLogout">SALIR</button>
+        </div>
+    </header>
+
+    <!-- Vista Home -->
+    <section class="view active" id="view-home">
+        <div class="hero">
+            <h1 class="hero-title">
+                <span class="glitch" data-text="FUTURO">FUTURO</span>
+                <br>
+                <span class="gradient-text">DEL COMERCIO</span>
+            </h1>
+            <p class="hero-subtitle">
+                Plataforma e-commerce con gestión multi-rol: administradores, gerentes, cajeros, repositorios y proveedores.
+            </p>
+            <div class="hero-buttons">
+                <button class="cta-btn" id="heroRegister">COMENZAR AHORA</button>
+                <button class="cta-btn secondary" id="heroLogin">INICIAR SESIÓN</button>
+            </div>
+        </div>
+
+        <div class="roles-grid">
+            <div class="role-card" data-role="Administrador">
+                <div class="role-icon">⚡</div>
+                <h3>ADMINISTRADOR</h3>
+                <p>Control total del sistema</p>
+            </div>
+            <div class="role-card" data-role="Gerente">
+                <div class="role-icon">📊</div>
+                <h3>GERENTE</h3>
+                <p>Reportes y gestión</p>
+            </div>
+            <div class="role-card" data-role="Cajero">
+                <div class="role-icon">💳</div>
+                <h3>CAJERO</h3>
+                <p>Procesamiento de ventas</p>
+            </div>
+            <div class="role-card" data-role="Repositor">
+                <div class="role-icon">📦</div>
+                <h3>REPOSITOR</h3>
+                <p>Control de inventario</p>
+            </div>
+            <div class="role-card" data-role="Proveedor">
+                <div class="role-icon">🚚</div>
+                <h3>PROVEEDOR</h3>
+                <p>Suministro de productos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vista Productos -->
+    <section class="view" id="view-productos">
+        <h2 class="section-title">CATÁLOGO PRODUCTOS</h2>
+        <div class="products-grid" id="productsGrid">
+            <div class="product-card loading">
+                <div class="product-img"></div>
+                <h3>Cargando...</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vista Dashboard (post-login) -->
+    <section class="view" id="view-dashboard">
+        <h2 class="section-title" id="dashboardTitle">DASHBOARD</h2>
+        <div class="dashboard-content" id="dashboardContent"></div>
+    </section>
+
+    <!-- Modal Login -->
+    <div class="modal" id="modalLogin">
+        <div class="modal-content">
+            <span class="modal-close" data-close="modalLogin">✕</span>
+            <h2 class="modal-title">ACCESO AL SISTEMA</h2>
+            <form id="formLogin">
+                <div class="input-group">
+                    <input type="email" id="loginEmail" placeholder=" " required>
+                    <label>Correo Electrónico</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="loginPassword" placeholder=" " required>
+                    <label>Contraseña</label>
+                </div>
+                <button type="submit" class="submit-btn">INICIAR SESIÓN</button>
+            </form>
+            <div class="modal-footer">
+                <p>¿No tienes cuenta? <a href="#" id="linkToRegister">Regístrate aquí</a></p>
+                <p class="admin-hint">Admin: admin@neocommerce.com / Admin123!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Registro -->
+    <div class="modal" id="modalRegister">
+        <div class="modal-content">
+            <span class="modal-close" data-close="modalRegister">✕</span>
+            <h2 class="modal-title">NUEVO REGISTRO</h2>
+            <form id="formRegister">
+                <div class="input-group">
+                    <input type="text" id="regNombre" placeholder=" " required>
+                    <label>Nombre Completo</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="regEmail" placeholder=" " required>
+                    <label>Correo Electrónico</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="regPassword" placeholder=" " required minlength="6">
+                    <label>Contraseña (min. 6 caracteres)</label>
+                </div>
+                <div class="input-group">
+                    <select id="regRol" required>
+                        <option value="">Selecciona un rol</option>
+                    </select>
+                    <label class="select-label">Rol</label>
+                </div>
+                <div class="input-group" id="codigoGroup" style="display:none;">
+                    <input type="text" id="regCodigo" placeholder=" ">
+                    <label>Código Especial</label>
+                </div>
+                <div class="input-group">
+                    <input type="tel" id="regTelefono" placeholder=" ">
+                    <label>Teléfono (opcional)</label>
+                </div>
+                <button type="submit" class="submit-btn">CREAR CUENTA</button>
+            </form>
+            <div class="modal-footer">
+                <p>¿Ya tienes cuenta? <a href="#" id="linkToLogin">Inicia sesión</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificaciones -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
